@@ -72,7 +72,7 @@ export function ProjectCard({
             </CardDescription>
           </div>
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenuTrigger asChild className="cursor-pointer">
               <Button
                 variant="ghost"
                 size="sm"

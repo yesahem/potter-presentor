@@ -81,4 +81,13 @@ export const mockProjects = [
     status: "active",
     isDeleted: true,
   },
+
+  {
+    id: 8,
+    title: "E-commerce Platform 2",
+    description: "Modern online shopping experience 2",
+    lastModified: "2 hours ago",
+    status: "active",
+    isDeleted: false,
+  },
 ];

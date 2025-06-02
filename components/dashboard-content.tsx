@@ -1,9 +1,12 @@
 "use client"
 
-import { Search } from "lucide-react"
+import { Search, Plus, Upload } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
 import { ProjectCard } from "@/components/project-card"
+import { ImportProjectModal } from "@/components/import-project-modal"
+import { useState } from "react"
 
 interface Project {
   id: number
@@ -33,6 +36,8 @@ export function DashboardContent({
   onRestoreProject,
   onPermanentDelete,
 }: DashboardContentProps) {
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false)
+
   const getSectionTitle = () => {
     switch (activeSection) {
       case "home":
@@ -59,6 +64,21 @@ export function DashboardContent({
     }
   }
 
+  const handleNewProject = () => {
+    console.log("Creating new project...")
+    // Add your new project logic here
+  }
+
+  const handleImportProject = () => {
+    setIsImportModalOpen(true)
+  }
+
+  const handleImportComplete = (files: File[]) => {
+    console.log("Importing files:", files)
+    // Add your import logic here
+    setIsImportModalOpen(false)
+  }
+
   return (
     <SidebarInset className="flex-1">
       <div className="flex flex-col h-full">
@@ -82,6 +102,20 @@ export function DashboardContent({
             )}
           </div>
         </header>
+
+        {/* Action buttons section */}
+        {activeSection !== "settings" && activeSection !== "trash" && (
+          <div className="flex items-center gap-3 p-4 border-b border-border/40 justify-end">
+            <Button onClick={handleNewProject} className="flex items-center gap-2 cursor-pointer">
+              <Plus className="h-4 w-4" />
+              New Project
+            </Button>
+            <Button onClick={handleImportProject} variant="outline" className="flex items-center gap-2 cursor-pointer">
+              <Upload className="h-4 w-4" />
+              Import Project
+            </Button>
+          </div>
+        )}
 
         {/* Main content */}
         <main className="flex-1 p-4 md:p-6">
@@ -113,6 +147,13 @@ export function DashboardContent({
           )}
         </main>
       </div>
+
+      {/* Import Modal */}
+      <ImportProjectModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onImport={handleImportComplete}
+      />
     </SidebarInset>
   )
 }
