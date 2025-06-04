@@ -15,14 +15,9 @@ interface Project {
 }
 
 interface User {
-  id: string;
-        email: string;
-        name: string;
-        clerkId: string;
-        profilePicture: string | null;
-        subscription: boolean;
-        createdAt: Date;
-        updatedAt: Date;
+  name: string
+  email: string
+  avatar?: string
 }
 
 interface DashboardLayoutProps {
@@ -59,23 +54,32 @@ export function DashboardLayout({ projects, user }: DashboardLayoutProps) {
   const getFilteredProjects = () => {
     let filtered = projectList
 
-    // Filter by section
+    // First filter out deleted projects unless we're in trash
     if (activeSection === "trash") {
       filtered = filtered.filter((project) => project.isDeleted)
     } else {
       filtered = filtered.filter((project) => !project.isDeleted)
 
-      if (activeSection === "recents") {
-        // Show recently modified projects (last 7 days)
-        const sevenDaysAgo = new Date()
-        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7)
-        // For demo purposes, we'll show projects modified in the last few days/hours
-        filtered = filtered.filter(
-          (project) =>
-            project.lastModified.includes("hour") ||
-            project.lastModified.includes("day") ||
-            project.lastModified === "Just now",
-        )
+      // Then apply section-specific filters
+      switch (activeSection) {
+        case "home":
+          filtered = filtered.filter((project) => project.status === "active")
+          break
+        case "draft":
+          filtered = filtered.filter((project) => project.status === "draft")
+          break
+        case "archived":
+          filtered = filtered.filter((project) => project.status === "archived")
+          break
+        case "recents":
+          // Show recently modified projects (last 7 days)
+          filtered = filtered.filter(
+            (project) =>
+              project.lastModified.includes("hour") ||
+              project.lastModified.includes("day") ||
+              project.lastModified === "Just now",
+          )
+          break
       }
     }
 

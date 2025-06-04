@@ -24,10 +24,10 @@ export function Navbar(){
               Templates
             </Link>
             <Link
-              href="#how-it-works"
+              href="#about"
               className="text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
             >
-              How It Works
+              About Us
             </Link>
           </div>
           <div className="flex items-center gap-4">

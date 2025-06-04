@@ -41,9 +41,13 @@ export function DashboardContent({
   const getSectionTitle = () => {
     switch (activeSection) {
       case "home":
-        return "All Projects"
+        return "Active Projects"
       case "recents":
         return "Recent Projects"
+      case "draft":
+        return "Draft Projects"
+      case "archived":
+        return "Archived Projects"
       case "trash":
         return "Trash"
       case "settings":
@@ -59,6 +63,10 @@ export function DashboardContent({
         return "No deleted projects found."
       case "recents":
         return "No recent projects found."
+      case "draft":
+        return "No draft projects found."
+      case "archived":
+        return "No archived projects found."
       default:
         return "No projects found matching your search."
     }
@@ -78,6 +86,9 @@ export function DashboardContent({
     // Add your import logic here
     setIsImportModalOpen(false)
   }
+
+  // Only show action buttons in home, recents, and draft sections
+  const showActionButtons = ["home", "recents", "draft"].includes(activeSection)
 
   return (
     <SidebarInset className="flex-1">
@@ -104,7 +115,7 @@ export function DashboardContent({
         </header>
 
         {/* Action buttons section */}
-        {activeSection !== "settings" && activeSection !== "trash" && (
+        {showActionButtons && (
           <div className="flex items-center gap-3 p-4 border-b border-border/40 justify-end">
             <Button onClick={handleNewProject} className="flex items-center gap-2 cursor-pointer">
               <Plus className="h-4 w-4" />

@@ -17,6 +17,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { useRouter } from "next/navigation";
 
 interface Project {
   id: number;
@@ -42,6 +43,7 @@ export function ProjectCard({
   onRestore,
   onPermanentDelete,
 }: ProjectCardProps) {
+  const router = useRouter();
   const getStatusColor = (status: string) => {
     switch (status) {
       case "active":
@@ -57,9 +59,12 @@ export function ProjectCard({
 
   return (
     <Card
-      className={`group hover:shadow-md transition-all duration-200 border-border/40 bg-card/50 backdrop-blur-sm ${
+      className={`group hover:shadow-md transition-all duration-200 border-border/40 bg-card/50 backdrop-blur-sm cursor-pointer ${
         isInTrash ? "opacity-75" : ""
       }`}
+      onClick={() => {
+        router.push(`/project/${project.id}`);
+      }}
     >
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
@@ -77,8 +82,9 @@ export function ProjectCard({
                 variant="ghost"
                 size="sm"
                 className="opacity-0 group-hover:opacity-100 transition-opacity h-8 w-8 p-0"
+                onClick={(e) => e.stopPropagation()} // Prevent card navigation
               >
-                <MoreHorizontal className="h-4 w-4" />
+                <MoreHorizontal className="h-4 w-4 " />
                 <span className="sr-only">Open menu</span>
               </Button>
             </DropdownMenuTrigger>
@@ -86,7 +92,10 @@ export function ProjectCard({
               {isInTrash ? (
                 <>
                   <DropdownMenuItem
-                    onClick={() => onRestore(project.id)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card navigation
+                      onRestore(project.id);
+                    }}
                     className="cursor-pointer"
                   >
                     <RotateCcw className="mr-2 h-4 w-4" />
@@ -94,7 +103,10 @@ export function ProjectCard({
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
-                    onClick={() => onPermanentDelete(project.id)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card navigation
+                      onPermanentDelete(project.id);
+                    }}
                     className="cursor-pointer text-destructive focus:text-destructive"
                   >
                     <X className="mr-2 h-4 w-4" />
@@ -104,7 +116,8 @@ export function ProjectCard({
               ) : (
                 <>
                   <DropdownMenuItem
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card navigation
                       // Handle view action
                       console.log("View project:", project.id);
                     }}
@@ -114,7 +127,10 @@ export function ProjectCard({
                     View
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    onClick={() => onDelete(project.id)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card navigation
+                      onDelete(project.id);
+                    }}
                     className="cursor-pointer text-destructive focus:text-destructive"
                   >
                     <Trash2 className="mr-2 h-4 w-4" />

@@ -2,13 +2,13 @@ import Link from "next/link"
 import { ArrowRight, Sparkles, Layers, Palette, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import TemplateShowcase from "@/components/template-showcase"
-import FeatureCard from "@/components/feature-card"
-import HeroAnimation from "@/components/hero-animation"
 import { Navbar } from "./navbar"
 import { HeroSection } from "./hero-section"
 import { FeatureSection } from "./feature-section"
 import { WorkingSection } from "./working-section"
 import { Footer } from "./footer"
+import {AboutSection} from "@/components/about-us"
+import { CTASection } from "./cta-section"
 
 
 export default function LandingPage() {
@@ -30,7 +30,7 @@ export default function LandingPage() {
       <WorkingSection />
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-orange-500 to-teal-500 dark:from-orange-600 dark:to-teal-600 py-20">
+      {/* <section className="bg-gradient-to-r from-orange-500 to-teal-500 dark:from-orange-600 dark:to-teal-600 py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to create amazing presentations?</h2>
           <p className="text-xl text-orange-100 dark:text-orange-200 max-w-2xl mx-auto mb-10">
@@ -44,8 +44,12 @@ export default function LandingPage() {
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
-      </section>
+      </section> */}
 
+      <CTASection />
+
+{/* ABout Us */}
+<AboutSection />
       {/* Footer */}
       <Footer />
     </div>
