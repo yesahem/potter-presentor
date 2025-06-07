@@ -18,6 +18,8 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
+import { JsonValue } from "@prisma/client/runtime/library";
+import { slideStore } from "@/store/slideStore";
 
 interface Project {
   id: number;
@@ -31,6 +33,7 @@ interface Project {
 interface ProjectCardProps {
   project: Project;
   isInTrash?: boolean;
+  slidesData?: JsonValue
   onDelete: (projectId: number) => void;
   onRestore: (projectId: number) => void;
   onPermanentDelete: (projectId: number) => void;
@@ -40,6 +43,7 @@ export function ProjectCard({
   project,
   isInTrash = false,
   onDelete,
+  slidesData,
   onRestore,
   onPermanentDelete,
 }: ProjectCardProps) {
@@ -56,6 +60,7 @@ export function ProjectCard({
         return "bg-blue-500/10 text-blue-500 border-blue-500/20";
     }
   };
+  const {setSlides} = slideStore()
 
   return (
     <Card
@@ -63,7 +68,8 @@ export function ProjectCard({
         isInTrash ? "opacity-75" : ""
       }`}
       onClick={() => {
-        router.push(`/project/${project.id}`);
+        // setSlides(JSON.parse(JSON.stringify(slidesData)))
+        router.push(`/presentation/${project.id}`);
       }}
     >
       <CardHeader className="pb-3">
@@ -95,6 +101,7 @@ export function ProjectCard({
                     onClick={(e) => {
                       e.stopPropagation(); // Prevent card navigation
                       onRestore(project.id);
+                      router.refresh();
                     }}
                     className="cursor-pointer"
                   >
@@ -127,14 +134,22 @@ export function ProjectCard({
                     View
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent card navigation
-                      onDelete(project.id);
-                    }}
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent card navigation
+                    onDelete(project.id);
+                    router.refresh();
+                  }}
+                    
                     className="cursor-pointer text-destructive focus:text-destructive"
                   >
                     <Trash2 className="mr-2 h-4 w-4" />
-                    Delete
+                    <div  onClick={(e) => {
+                      e.stopPropagation(); // Prevent card navigation
+                      onDelete(project.id);
+                      router.refresh();
+                    }}>
+                      Delete
+                    </div>
                   </DropdownMenuItem>
                 </>
               )}

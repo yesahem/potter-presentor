@@ -38,5 +38,5 @@ model Projects {
     outlines    String[]
     userId      String
     User        User     @relation(fields: [userId], references: [id])
-		themeName String @default("light")
+    themeName   String   @default("light")
 }

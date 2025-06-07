@@ -1,6 +1,6 @@
 import { onAuthenticateUser } from "@/actions/user";
 import { DashboardLayout } from "@/components/dashboard-layout";
-import { mockProjects } from "@/const";
+import { mockProjects } from "@/lib/const";
 import { redirect } from "next/navigation";
 
 export default async function HomePage() {

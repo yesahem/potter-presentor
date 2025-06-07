@@ -7,6 +7,7 @@ import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
 import { ProjectCard } from "@/components/project-card"
 import { ImportProjectModal } from "@/components/import-project-modal"
 import { useState } from "react"
+import { JsonValue } from "@prisma/client/runtime/library"
 
 interface Project {
   id: number
@@ -14,6 +15,7 @@ interface Project {
   description: string
   lastModified: string
   status: string
+  slidesData? : JsonValue
   isDeleted: boolean
 }
 
@@ -68,7 +70,7 @@ export function DashboardContent({
       case "archived":
         return "No archived projects found."
       default:
-        return "No projects found matching your search."
+        return "No projects found."
     }
   }
 
@@ -141,6 +143,7 @@ export function DashboardContent({
                   <ProjectCard
                     key={project.id}
                     project={project}
+                    slidesData={project?.slidesData}
                     isInTrash={activeSection === "trash"}
                     onDelete={onDeleteProject}
                     onRestore={onRestoreProject}

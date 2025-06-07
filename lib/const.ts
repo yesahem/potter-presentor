@@ -1,4 +1,5 @@
-import { Home, Clock, Trash2, Settings, Archive, FileText,Palette,Brain, Share2, Sparkles, Zap, } from "lucide-react"
+import { Home, Clock, Trash2, Settings, Archive, FileText, Palette,Brain, Share2, Sparkles, Zap,  BarChart3 } from "lucide-react"
+
 export const menuItems = [
   {
     title: "Home",
@@ -33,14 +34,13 @@ export const menuItems = [
 ]
 
 
-
 export const mockProjects = [
   {
     id: 1,
     title: "E-commerce Platform",
     description: "Modern online shopping experience",
     lastModified: "2 hours ago",
-    status: "active",
+    status: "active", 
     isDeleted: false,
   },
   {
@@ -103,8 +103,7 @@ export const mockProjects = [
 ];
 
 
-export 
-const features = [
+export const features = [
   {
     icon: Brain,
     title: "AI-Powered Content",

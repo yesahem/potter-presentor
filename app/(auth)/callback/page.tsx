@@ -1,14 +1,14 @@
 import { onAuthenticateUser } from "@/actions/user";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default async function AuthCallback() {
   const user = await onAuthenticateUser();
-
+  const router = useRouter();
   if (200 === user?.status) {
-    redirect("/dashboard");
+    router.push("/dashboard");
   }
   if (403 === user?.status || 500 === user?.status) {
-    redirect("/signin");
+    router.push("/signin");
   }
   return <div>i am a callback Route</div>;
 }

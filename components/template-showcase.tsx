@@ -62,7 +62,7 @@ export default function TemplateShowcase() {
   const currentCategory = templateCategories.find((cat) => cat.id === activeCategory)
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="container mx-auto px-4 py-20">
       {/* Category Selection */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
         {templateCategories.map((category) => (

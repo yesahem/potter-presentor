@@ -11,10 +11,11 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { menuItems } from "@/const";
+import { menuItems } from "@/lib/const";
 import { Button } from "./ui/button";
 import { useClerk } from "@clerk/nextjs";
 import { LogOut } from "lucide-react";
+import {  useRouter } from "next/navigation";
 
 interface AppSidebarProps {
   activeSection: string;
@@ -28,6 +29,7 @@ export function AppSidebar({
   user,
 }: AppSidebarProps) {
   const { signOut } = useClerk();
+  const router = useRouter()
   const handleLogout = () => {
     console.log("Logging out...");
     signOut({ redirectUrl: "/" });
@@ -38,7 +40,9 @@ export function AppSidebar({
   return (
     <Sidebar className="border-r border-border/40">
       <SidebarContent>
-        <span className="text-3xl italic flex items-center justify-center mt-3 font-bold">Potter Presentor</span>
+        <span className="text-3xl italic flex items-center justify-center mt-3 font-bold cursor-pointer" onClick={()=>{
+          router.push("/")
+        }}>Potter Presentor</span>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
