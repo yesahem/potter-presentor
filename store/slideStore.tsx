@@ -8,9 +8,9 @@ import { persist } from "zustand/middleware";
   setSlides: (slides: Slide[]) => void;
 }
  
-export const slideStore = create(
+export const slideStore = create<SlideState>()(
   persist<SlideState>(
-    (set, get) => ({
+    (set) => ({
       slides: [],
       setSlides: (slides: Slide[]) => set({ slides }),
     }),

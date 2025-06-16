@@ -1,4 +1,7 @@
-import { Home, Clock, Trash2, Settings, Archive, FileText, Palette,Brain, Share2, Sparkles, Zap,  BarChart3 } from "lucide-react"
+import { Home, Clock, Trash2, Settings, Archive, FileIcon as FileTemplate, FileText, Palette,Brain, Share2, Sparkles, Zap,  BarChart3, PlusCircle, Code, Users } from "lucide-react"
+
+
+
 
 export const menuItems = [
   {
@@ -133,5 +136,75 @@ export const features = [
     icon: Sparkles,
     title: "Smart Suggestions",
     description: "Get intelligent recommendations to improve your presentation's impact.",
+  },
+]
+
+export const projectTemplates = [
+  {
+    id: "create",
+    title: "Use a Template",
+    description: "Choose from our collection of professionally designed templates to get started quickly.",
+    icon: FileTemplate,
+    color: "bg-blue-500/10 text-blue-500 border-blue-500/20",
+    features: ["Pre-built layouts", "Industry standards", "Quick setup"],
+  },
+  {
+    id: "creative-ai",
+    title: "Creative AI",
+    description: "Let our AI assistant create a custom project based on your requirements and preferences.",
+    icon: Sparkles,
+    color: "bg-purple-500/10 text-purple-500 border-purple-500/20",
+    features: ["Smart generation", "Custom layouts", "AI-powered"],
+  },
+  {
+    id: "creative-scratch",
+    title: "Start from Scratch",
+    description: "Begin with a blank canvas and build your project exactly the way you envision it.",
+    icon: PlusCircle,
+    color: "bg-green-500/10 text-green-500 border-green-500/20",
+    features: ["Full control", "Custom design", "Unlimited creativity"],
+  },
+]
+
+export const recentPrompts = [
+  {
+    id: 1,
+    prompt: "Create a modern e-commerce dashboard with analytics",
+    type: "AI Generated",
+    timestamp: "2 hours ago",
+    category: "Dashboard",
+    icon: BarChart3,
+  },
+  {
+    id: 2,
+    prompt: "Design a team collaboration workspace",
+    type: "AI Generated",
+    timestamp: "1 day ago",
+    category: "Workspace",
+    icon: Users,
+  },
+  {
+    id: 3,
+    prompt: "Build a portfolio website with dark theme",
+    type: "AI Generated",
+    timestamp: "3 days ago",
+    category: "Website",
+    icon: Palette,
+  },
+  {
+    id: 4,
+    prompt: "Create a project management tool interface",
+    type: "AI Generated",
+    timestamp: "1 week ago",
+    category: "Tool",
+    icon: Code,
+  },
+  {
+    id: 5,
+    prompt: "Design a mobile app landing page",
+    type: "AI Generated",
+    timestamp: "2 weeks ago",
+    category: "Landing",
+    icon: Zap,
   },
 ]

@@ -8,6 +8,7 @@ import { ProjectCard } from "@/components/project-card"
 import { ImportProjectModal } from "@/components/import-project-modal"
 import { useState } from "react"
 import { JsonValue } from "@prisma/client/runtime/library"
+import { useRouter } from "next/navigation"
 
 interface Project {
   id: number
@@ -39,6 +40,7 @@ export function DashboardContent({
   onPermanentDelete,
 }: DashboardContentProps) {
   const [isImportModalOpen, setIsImportModalOpen] = useState(false)
+  const router = useRouter()
 
   const getSectionTitle = () => {
     switch (activeSection) {
@@ -77,6 +79,7 @@ export function DashboardContent({
   const handleNewProject = () => {
     console.log("Creating new project...")
     // Add your new project logic here
+    router.push("/create")
   }
 
   const handleImportProject = () => {
