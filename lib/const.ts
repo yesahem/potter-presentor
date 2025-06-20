@@ -169,42 +169,62 @@ export const projectTemplates = [
 export const recentPrompts = [
   {
     id: 1,
-    prompt: "Create a modern e-commerce dashboard with analytics",
-    type: "AI Generated",
-    timestamp: "2 hours ago",
-    category: "Dashboard",
-    icon: BarChart3,
+    title: "Create a modern e-commerce dashboard with analytics",
+    createdAt: "2 hours ago",
+    outline: [
+      {
+        id: "1",
+        title: "Dashboard",
+        order: 1,
+      },
+    ],
   },
   {
     id: 2,
-    prompt: "Design a team collaboration workspace",
-    type: "AI Generated",
-    timestamp: "1 day ago",
-    category: "Workspace",
-    icon: Users,
+    title: "Design a team collaboration workspace",
+    createdAt: "1 day ago",
+    outline: [
+      {
+        id: "1",
+        title: "Workspace",
+        order: 2,
+      },
+    ],
   },
   {
     id: 3,
-    prompt: "Build a portfolio website with dark theme",
-    type: "AI Generated",
-    timestamp: "3 days ago",
-    category: "Website",
-    icon: Palette,
+    title: "Build a portfolio website with dark theme",
+    createdAt: "3 days ago",
+    outline: [
+      {
+        id: "1",
+        title: "Website",
+        order: 3,
+      },
+    ],
   },
   {
     id: 4,
-    prompt: "Create a project management tool interface",
-    type: "AI Generated",
-    timestamp: "1 week ago",
-    category: "Tool",
-    icon: Code,
+    title: "Create a project management tool interface",
+    createdAt: "1 week ago",
+    outline: [
+      {
+        id: "1",
+        title: "Tool",
+        order: 4,
+      },
+    ],
   },
   {
     id: 5,
-    prompt: "Design a mobile app landing page",
-    type: "AI Generated",
-    timestamp: "2 weeks ago",
-    category: "Landing",
-    icon: Zap,
+    title: "Design a mobile app landing page",
+    createdAt: "2 weeks ago",
+    outline: [
+      {
+        id: "1",
+        title: "Landing",
+        order: 5,
+      },
+    ],
   },
 ]

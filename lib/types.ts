@@ -55,3 +55,9 @@ export interface ContentItems {
   bgColor?: string;
   isTransarent?: boolean;
 }
+
+export interface OutlineCard {
+  id: string;
+  title: string;
+  order: number;
+}

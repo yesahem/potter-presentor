@@ -1,13 +1,15 @@
-"use client";
 
+
+import { CreatePageSkeleton } from "@/components/create-page-skeleton";
 import { NewProjectPage } from "@/components/new-project-page";
+import { Suspense } from "react";
 
-export default function CreatePage() {
+export default async function CreatePage() {
     
 
     return (
-       <div>
-         <NewProjectPage />
-       </div>
+      <Suspense fallback={<CreatePageSkeleton  />}>
+        <NewProjectPage />
+      </Suspense>
     )
 }

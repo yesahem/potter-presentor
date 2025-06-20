@@ -1,3 +1,4 @@
+"use client"
 import { onAuthenticateUser } from "@/actions/user";
 import { useRouter } from "next/navigation";
 

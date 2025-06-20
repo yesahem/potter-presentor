@@ -16,18 +16,13 @@ import Link from "next/link";
 import { projectTemplates, recentPrompts } from "@/lib/const";
 import { page, promptStore } from "@/store/promptStore";
 
-
 export function NewProjectPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
-  const { page, setPage } = promptStore();
-  console.log("set page", page);
+  const { prompt, page, setPage } = promptStore();
 
-  const filteredPrompts = recentPrompts.filter(
-    (prompt) =>
-      prompt.prompt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      prompt.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  console.log("prompt", prompt);
+  console.log("set page", page);
 
   const handleTemplateSelect = (templateId: string) => {
     setSelectedTemplate(templateId);
@@ -36,8 +31,8 @@ export function NewProjectPage() {
     setPage(`${selectedTemplate}` as page);
   };
 
-  const handlePromptUse = (prompt: any) => {
-    console.log(`Using prompt: ${prompt.prompt}`);
+  const handlePromptUse = (prompts: any) => {
+    console.log(`Using prompt: ${prompts.title}`);
     // Add your prompt usage logic here
   };
 
@@ -45,7 +40,6 @@ export function NewProjectPage() {
     if (selectedTemplate) {
       console.log(`Creating project with template: ${selectedTemplate}`);
       // Add your project creation logic here
-      
     }
   };
 
@@ -57,7 +51,10 @@ export function NewProjectPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link href="/dashboard">
-                <Button variant="ghost" size="sm" className="gap-2 cursor-pointer" 
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="gap-2 cursor-pointer"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Back to Dashboard
@@ -66,7 +63,6 @@ export function NewProjectPage() {
               <div className="h-6 w-px bg-border" />
               <h1 className="text-lg font-semibold">Create New Project</h1>
             </div>
-
           </div>
         </div>
       </nav>
@@ -101,7 +97,9 @@ export function NewProjectPage() {
                   >
                     <template.icon className="h-8 w-8" />
                   </div>
-                  <CardTitle className="text-xl  bg-gradient-to-r from-[#3B71CA] to-[#DC4C64] bg-clip-text text-transparent  font-bold ">{template.title}</CardTitle>
+                  <CardTitle className="text-xl  bg-gradient-to-r from-[#3B71CA] to-[#DC4C64] bg-clip-text text-transparent  font-bold ">
+                    {template.title}
+                  </CardTitle>
                   <CardDescription className="text-sm leading-relaxed">
                     {template.description}
                   </CardDescription>
@@ -166,43 +164,48 @@ export function NewProjectPage() {
 
           {/* Prompts List */}
           <div className="space-y-4">
-            {filteredPrompts.length > 0 ? (
-              filteredPrompts.map((prompt) => (
-                <Card
-                  key={prompt.id}
+            {prompt.length > 0 ? (
+              prompt.map((promptItem, index) => (
+                <div
+                  key={index}
                   className="border-border/40 bg-card/50 backdrop-blur-sm"
                 >
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-start gap-4 flex-1">
                         <div className="h-10 w-10 rounded-lg bg-muted flex items-center justify-center">
-                          <prompt.icon className="h-5 w-5 text-muted-foreground" />
+                          <Clock className="h-5 w-5 text-muted-foreground" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <h4 className="font-medium mb-1 truncate">
-                            {prompt.prompt}
+                            {/* {promptItem.title || "Title"}
+                             */}
+                             Title
                           </h4>
                           <div className="flex items-center gap-3 text-sm text-muted-foreground">
                             <Badge variant="secondary" className="text-xs">
-                              {prompt.category}
+                              {/* {promptItem.outline
+                                ?.map((outline) => outline.title)
+                                .join(", ") || "Outline"} */}
+                                Outline
                             </Badge>
-                            <span>{prompt.timestamp}</span>
+                            {/* <span>{promptItem.createdAt || "createdAt"}</span> */}
+                            <span>createdAt</span>
                             <span>•</span>
-                            <span>{prompt.type}</span>
                           </div>
                         </div>
                       </div>
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => handlePromptUse(prompt)}
+                        onClick={() => handlePromptUse(promptItem)}
                         className="ml-4 cursor-pointer"
                       >
                         Use
                       </Button>
                     </div>
                   </CardContent>
-                </Card>
+                </div>
               ))
             ) : (
               <div className="text-center py-12">
